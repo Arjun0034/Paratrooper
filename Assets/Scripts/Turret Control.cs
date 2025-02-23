@@ -6,13 +6,13 @@ public class TurretControl : MonoBehaviour
 {
     // Rotation settings
     public float rotateSpeed = 2.5f;
-    public float minRotationZ = 2f;   // Minimum Z rotation angle
-    public float maxRotationZ = 87f;  // Maximum Z rotation angle
+    public float minRotationZ = 2f;   
+    public float maxRotationZ = 87f;  
 
     // Firing settings
     public GameObject bulletPrefab;
     public Transform bulletSpawnPoint;
-    public float fireRate = 0.15f;    // Time between shots
+    public float fireRate = 0.15f;    
     private float nextFireTime = 0f;
 
     // Rotation state
@@ -49,7 +49,7 @@ public class TurretControl : MonoBehaviour
 
     void HandleFiring()
     {
-        // Firing is handled by the FireBullet method directly
+        // Firing is handled by the FireBullet method
     }
 
     public void StartRotatingRight()
@@ -85,8 +85,8 @@ public class TurretControl : MonoBehaviour
                 Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
                 if (rb != null)
                 {
-                    float bulletSpeed = 10f; // Adjust speed as needed
-                    rb.velocity = bulletSpawnPoint.up * bulletSpeed; // Adjust direction if needed
+                    float bulletSpeed = 10f;
+                    rb.velocity = bulletSpawnPoint.up * bulletSpeed; 
                 }
             }
         }
@@ -99,7 +99,7 @@ public class TurretControl : MonoBehaviour
         {
             Debug.Log("4th troop landed on turret! Game Over!");
             ScoreManager.Instance.GameOver();
-            GameManager.Instance.GameOver();  // Trigger game over
+            GameManager.Instance.GameOver();  
         }
     }
 
@@ -110,7 +110,7 @@ public class TurretControl : MonoBehaviour
             Debug.Log("💥 Bomb hit the turret! Game Over!");
             ScoreManager.Instance.GameOver();
             GameManager.Instance.GameOver();
-            Destroy(collision.gameObject); // ✅ Destroy the bomb on impact
+            Destroy(collision.gameObject);
         }
     }
 }

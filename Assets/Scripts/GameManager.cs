@@ -62,14 +62,14 @@ public class GameManager : MonoBehaviour
 
         Debug.Log("🚶 Moving troops toward their positions in sequence...");
 
-        // Define target positions based on the side
+        
         Vector3[] targetPositions;
         if (isLeftSide)
         {
             targetPositions = new Vector3[]
             {
                 new Vector3(-0.68f, -3.276153f, 0f), // 1st
-                new Vector3(-0.68f, -2.885f, 0f),   // 2nd (slide directly to this position)
+                new Vector3(-0.68f, -2.885f, 0f),   // 2nd 
                 new Vector3(-0.855f, -3.276153f, 0f), // 3rd
                 new Vector3(-1.023f, -3.269f, 0f), // 4th step 1
                 new Vector3(-0.855f, -2.885f, 0f), // 4th step 2
@@ -82,7 +82,7 @@ public class GameManager : MonoBehaviour
             targetPositions = new Vector3[]
             {
                 new Vector3(0.634f, -3.2761f, 0f), // 1st
-                new Vector3(0.634f, -2.869f, 0f),   // 2nd (slide directly to this position)
+                new Vector3(0.634f, -2.869f, 0f),   // 2nd 
                 new Vector3(0.805f, -3.2761f, 0f),  // 3rd
                 new Vector3(0.994f, -3.2761f, 0f),  // 4th step 1
                 new Vector3(0.805f, -2.869f, 0f),   // 4th step 2
@@ -91,10 +91,10 @@ public class GameManager : MonoBehaviour
             };
         }
 
-        // Move troops to their respective positions
+        
         for (int i = 0; i < targetPositions.Length; i++)
         {
-            // Freeze all troops except the one currently moving
+            
             for (int j = 0; j < troops.Count; j++)
             {
                 if (j != i)
@@ -106,15 +106,15 @@ public class GameManager : MonoBehaviour
             troops[i].UnfreezeTroop();
             yield return StartCoroutine(troops[i].MoveToPosition(targetPositions[i]));
 
-            // If it's the second troop, just move to its position without jumping
-            if (i == 1) // Second troop
+            
+            if (i == 1) 
             {
-                // No jump, just ensure it is positioned correctly
+                
                 Vector3 aboveFirstTroopPosition = new Vector3(troops[i - 1].transform.position.x, troops[i - 1].transform.position.y + 0.5f, 0f);
-                yield return StartCoroutine(troops[i].MoveToPosition(aboveFirstTroopPosition)); // Move directly above the first troop
+                yield return StartCoroutine(troops[i].MoveToPosition(aboveFirstTroopPosition)); 
             }
 
-            // If it's the fourth troop, perform the jumping sequence
+            
             if (i == 3) // Fourth troop
             {
                 // Jump on the third troop
@@ -133,11 +133,11 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Game Over!");
         if (gameOverText != null)
-            gameOverText.SetActive(true); // ✅ Show Game Over UI
+            gameOverText.SetActive(true);
 
         if (controlUI != null)
-            controlUI.SetActive(false); // ✅ Hide control UI
+            controlUI.SetActive(false);
 
-        Time.timeScale = 0; // ✅ Stop the game
+        Time.timeScale = 0;
     }
 }

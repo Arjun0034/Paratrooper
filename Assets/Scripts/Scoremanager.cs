@@ -42,7 +42,6 @@ public class ScoreManager : MonoBehaviour
     public void GameOver()
     {
         Debug.Log("Game Over!");
-        // Show Game Over UI or Restart the game
     }
 
     private void UpdateUI()

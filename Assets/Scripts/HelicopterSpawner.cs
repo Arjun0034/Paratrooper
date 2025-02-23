@@ -5,8 +5,8 @@ using UnityEngine;
 public class HelicopterSpawner : MonoBehaviour
 {
     public GameObject helicopterPrefab;
-    private bool spawnFromLeft; // Side selection
-    private bool isHelicopterActive = false; // Ensures only one helicopter exists
+    private bool spawnFromLeft;
+    private bool isHelicopterActive = false;
 
     void Start()
     {
@@ -17,11 +17,11 @@ public class HelicopterSpawner : MonoBehaviour
     {
         while (true)
         {
-            if (!isHelicopterActive) // Only spawn if no helicopter exists
+            if (!isHelicopterActive) 
             {
-                isHelicopterActive = true; // Mark helicopter as active
+                isHelicopterActive = true; 
 
-                spawnFromLeft = Random.value > 0.5f; // Random side selection
+                spawnFromLeft = Random.value > 0.5f;
                 Vector3 spawnPosition = spawnFromLeft ? new Vector3(-17, 3, 0) : new Vector3(17, 3, 0);
 
                 GameObject helicopter = Instantiate(helicopterPrefab, spawnPosition, Quaternion.identity);
@@ -32,16 +32,16 @@ public class HelicopterSpawner : MonoBehaviour
                     helicopterScript.Initialize(spawnFromLeft, this);
                 }
 
-                // Wait until this helicopter is destroyed before spawning another
+                
                 yield return new WaitUntil(() => !isHelicopterActive);
             }
 
-            yield return null; // Small delay to prevent excessive coroutine calls
+            yield return null; 
         }
     }
 
     public void HelicopterDestroyed()
     {
-        isHelicopterActive = false; // Allow the next helicopter to spawn
+        isHelicopterActive = false; 
     }
 }

@@ -11,12 +11,12 @@ public class Bomb : MonoBehaviour
             Debug.Log("Bomb hit the turret! Game Over!");
             ScoreManager.Instance.GameOver();
             GameManager.Instance.GameOver();
-            Destroy(gameObject); // ✅ Destroy bomb on impact
+            Destroy(gameObject); 
         }
         else if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
             Debug.Log("Bomb hit the ground!");
-            Destroy(gameObject); // ✅ Bomb disappears when hitting ground
+            Destroy(gameObject); 
         }
     }
 }

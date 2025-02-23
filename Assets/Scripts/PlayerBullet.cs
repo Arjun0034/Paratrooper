@@ -11,7 +11,7 @@ public class PlayerBullet : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        rb.velocity = transform.right * speed; // Move using physics
+        rb.velocity = transform.right * speed; 
         Destroy(gameObject, lifetime);
     }
 
@@ -19,21 +19,21 @@ public class PlayerBullet : MonoBehaviour
     {
         if (collision.CompareTag("Troop"))
         {
-            ScoreManager.Instance.AddScore(1); //+1 for hitting a troop
-            Destroy(collision.gameObject);  //Destroy the troop
-            Destroy(gameObject); //Destroy bullet
+            ScoreManager.Instance.AddScore(1); 
+            Destroy(collision.gameObject);  
+            Destroy(gameObject); 
         }
         else if (collision.CompareTag("Bomb"))
         {
-            ScoreManager.Instance.AddScore(2); //+2 for hitting a bomb
-            Destroy(collision.gameObject);  //Destroy the bomb
-            Destroy(gameObject); //Destroy bullet
+            ScoreManager.Instance.AddScore(2); 
+            Destroy(collision.gameObject);  
+            Destroy(gameObject); 
         }
         else if (collision.CompareTag("Copter"))
         {
-            ScoreManager.Instance.AddScore(4); //+4 for hitting a copter
-            Destroy(collision.gameObject);  //Destroy the copter
-            Destroy(gameObject); //Destroy bullet
+            ScoreManager.Instance.AddScore(4); 
+            Destroy(collision.gameObject);  
+            Destroy(gameObject);
         }
     }
 }

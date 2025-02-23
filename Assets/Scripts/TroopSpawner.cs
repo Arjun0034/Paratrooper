@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class TroopSpawner : MonoBehaviour
 {
-    public GameObject troopPrefab; // Assign the troop prefab in Inspector
-    public float spawnInterval = 3f; // Time between spawns
+    public GameObject troopPrefab; 
+    public float spawnInterval = 3f; 
 
-    private float minX, maxX; // Screen boundaries
-    private Vector3 turretPosition = new Vector3(0f, -2.6f, 0f); // Fixed turret position
+    private float minX, maxX; 
+    private Vector3 turretPosition = new Vector3(0f, -2.6f, 0f); 
 
     void Start()
     {
-        // Get screen width dynamically
+        
         Camera mainCamera = Camera.main;
         float screenHalfWidth = mainCamera.orthographicSize * mainCamera.aspect;
-        minX = -screenHalfWidth + 1f; // Prevent spawning off-screen
+        minX = -screenHalfWidth + 1f; 
         maxX = screenHalfWidth - 1f;
 
         StartCoroutine(SpawnTroops());
@@ -27,14 +27,14 @@ public class TroopSpawner : MonoBehaviour
         {
             yield return new WaitForSeconds(spawnInterval);
 
-            if (GameManager.Instance.CanSpawnTroops()) // Check if troops can still spawn
+            if (GameManager.Instance.CanSpawnTroops()) 
             {
                 SpawnTroop();
             }
             else
             {
                 Debug.Log("🚫 Troop spawning stopped! One side reached the limit.");
-                break; // Stop coroutine
+                break; 
             }
         }
     }
@@ -43,15 +43,15 @@ public class TroopSpawner : MonoBehaviour
     {
         if (troopPrefab != null)
         {
-            float spawnY = 2f; // Fixed height for troops to fall
+            float spawnY = 2f; 
 
-            // Choose a random X position between 2 units away from the turret and the screen edges
+            
             float spawnX;
-            if (Random.value > 0.5f) // Spawn on the left side
+            if (Random.value > 0.5f) 
             {
                 spawnX = Random.Range(minX, turretPosition.x - 2f);
             }
-            else // Spawn on the right side
+            else 
             {
                 spawnX = Random.Range(turretPosition.x + 2f, maxX);
             }
